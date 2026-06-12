@@ -1,0 +1,42 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "albumes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "usuario_uid", "order": "ASCENDING" },
+        { "fieldPath": "fecha_creacion", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "fotos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "usuario_uid", "order": "ASCENDING" },
+        { "fieldPath": "album_id", "order": "ASCENDING" },
+        { "fieldPath": "eliminada", "order": "ASCENDING" },
+        { "fieldPath": "fecha_subida", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "fotos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "usuario_uid", "order": "ASCENDING" },
+        { "fieldPath": "favorito", "order": "ASCENDING" },
+        { "fieldPath": "eliminada", "order": "ASCENDING" },
+        { "fieldPath": "fecha_subida", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "fotos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "usuario_uid", "order": "ASCENDING" },
+        { "fieldPath": "eliminada", "order": "ASCENDING" },
+        { "fieldPath": "fecha_subida", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
