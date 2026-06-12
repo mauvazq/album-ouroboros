@@ -26,6 +26,17 @@ export async function getPhotosByAlbum(uid, albumId) {
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
+export async function getAllPhotos(uid) {
+  const q = query(
+    collection(db, COLLECTION),
+    where('usuario_uid', '==', uid),
+    where('eliminada', '==', false),
+    orderBy('fecha_subida', 'desc')
+  );
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+
 export async function getFavoritePhotos(uid) {
   const q = query(
     collection(db, COLLECTION),

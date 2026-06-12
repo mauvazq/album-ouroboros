@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePhotos } from '../hooks/usePhotos';
+import { isWithinDateRange } from '../utils/dateFilters';
+import DateFilter from '../components/DateFilter';
 import PhotoCard from '../components/PhotoCard';
 import PhotoDetailModal from '../components/PhotoDetailModal';
 import Spinner from '../components/Spinner';
 import Icon from '../components/Icon';
 
-export default function FavoritesPage() {
+export default function AllPhotosPage() {
   const {
     photos,
     loading,
@@ -16,43 +18,51 @@ export default function FavoritesPage() {
     toggleFavorite,
     moveToTrash,
     updateTitle,
-  } = usePhotos('favorites');
+  } = usePhotos('all');
+
+  const [dateRange, setDateRange] = useState({ from: '', to: '' });
 
   useEffect(() => {
     fetchPhotos();
   }, [fetchPhotos]);
 
+  const filteredPhotos = photos.filter((photo) =>
+    isWithinDateRange(photo.fecha_subida, dateRange)
+  );
+
   return (
     <>
       <div className="page-header">
         <div>
-          <h1 className="page-title">Favoritos</h1>
+          <h1 className="page-title">Todas las fotos</h1>
           <p className="page-subtitle">
-            {photos.length} {photos.length === 1 ? 'foto favorita' : 'fotos favoritas'}
+            {filteredPhotos.length} de {photos.length}{' '}
+            {photos.length === 1 ? 'foto' : 'fotos'}
           </p>
         </div>
+        <DateFilter
+          value={dateRange}
+          onChange={setDateRange}
+          label="Fecha de subida"
+        />
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}
 
       {loading ? (
         <Spinner />
-      ) : photos.length === 0 ? (
+      ) : filteredPhotos.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">
-            <Icon name="heart" size={52} />
+            <Icon name="grid" size={52} />
           </div>
-          <h3>No tienes fotos favoritas</h3>
-          <p>Marca fotos como favoritas desde cualquier álbum.</p>
+          <h3>No hay fotos para mostrar</h3>
+          <p>Ajusta el filtro de fechas o sube fotos desde un álbum.</p>
         </div>
       ) : (
         <div className="grid grid-photos">
-          {photos.map((photo) => (
-            <PhotoCard
-              key={photo.id}
-              photo={photo}
-              onClick={setSelectedPhoto}
-            />
+          {filteredPhotos.map((photo) => (
+            <PhotoCard key={photo.id} photo={photo} onClick={setSelectedPhoto} />
           ))}
         </div>
       )}

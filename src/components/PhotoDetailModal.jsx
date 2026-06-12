@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Modal from './Modal';
 import Button from './Button';
+import Icon from './Icon';
 
 export default function PhotoDetailModal({
   photo,
@@ -46,10 +47,12 @@ export default function PhotoDetailModal({
               variant="secondary"
               onClick={() => onToggleFavorite(photo)}
             >
-              {photo.favorito ? '💔 Quitar favorito' : '❤️ Marcar favorito'}
+              <Icon name={photo.favorito ? 'heartOff' : 'heart'} />
+              {photo.favorito ? 'Quitar favorito' : 'Marcar favorito'}
             </Button>
             <Button variant="danger" onClick={() => onMoveToTrash(photo)}>
-              🗑️ Enviar a papelera
+              <Icon name="trash" />
+              Enviar a papelera
             </Button>
           </>
         )

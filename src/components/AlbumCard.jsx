@@ -1,4 +1,5 @@
 import Button from './Button';
+import Icon from './Icon';
 
 export default function AlbumCard({ album, onOpen, onEdit, onDelete }) {
   return (
@@ -7,7 +8,9 @@ export default function AlbumCard({ album, onOpen, onEdit, onDelete }) {
         {album.portada_url ? (
           <img src={album.portada_url} alt={album.nombre} />
         ) : (
-          <div className="album-card-placeholder">📷</div>
+          <div className="album-card-placeholder">
+            <Icon name="camera" size={52} />
+          </div>
         )}
       </div>
       <div className="album-card-body" onClick={() => onOpen(album)}>

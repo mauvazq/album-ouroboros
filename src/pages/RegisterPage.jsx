@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../components/Button';
+import BrandLogo from '../components/BrandLogo';
 import { useAuth } from '../hooks/useAuth';
 
 export default function RegisterPage({ onNavigate }) {
@@ -37,6 +38,7 @@ export default function RegisterPage({ onNavigate }) {
   return (
     <div className="auth-page">
       <div className="auth-card">
+        <BrandLogo />
         <h1>Crear cuenta</h1>
         <p>Regístrate para empezar a organizar tus fotos</p>
 

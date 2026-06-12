@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../components/Button';
+import BrandLogo from '../components/BrandLogo';
 import { useAuth } from '../hooks/useAuth';
 
 export default function LoginPage({ onNavigate }) {
@@ -25,8 +26,9 @@ export default function LoginPage({ onNavigate }) {
   return (
     <div className="auth-page">
       <div className="auth-card">
+        <BrandLogo />
         <h1>Iniciar sesión</h1>
-        <p>Accede a tu álbum de fotos personal</p>
+        <p>Accede a tu archivo personal de fotos</p>
 
         {error && <div className="alert alert-error">{error}</div>}
 

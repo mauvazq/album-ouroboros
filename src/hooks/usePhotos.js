@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from './useAuth';
 import {
+  getAllPhotos,
   getPhotosByAlbum,
   getFavoritePhotos,
   getTrashPhotos,
@@ -30,6 +31,8 @@ export function usePhotos(mode = 'album', albumId = null) {
         data = await getFavoritePhotos(user.uid);
       } else if (mode === 'trash') {
         data = await getTrashPhotos(user.uid);
+      } else if (mode === 'all') {
+        data = await getAllPhotos(user.uid);
       } else if (albumId) {
         data = await getPhotosByAlbum(user.uid, albumId);
       } else {

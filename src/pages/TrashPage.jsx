@@ -5,6 +5,7 @@ import PhotoDetailModal from '../components/PhotoDetailModal';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import Spinner from '../components/Spinner';
+import Icon from '../components/Icon';
 
 export default function TrashPage() {
   const {
@@ -65,7 +66,9 @@ export default function TrashPage() {
         <Spinner />
       ) : photos.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-state-icon">🗑️</div>
+          <div className="empty-state-icon">
+            <Icon name="trash" size={52} />
+          </div>
           <h3>La papelera está vacía</h3>
           <p>Las fotos que elimines aparecerán aquí antes de borrarse definitivamente.</p>
         </div>

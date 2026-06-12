@@ -1,8 +1,14 @@
+import Icon from './Icon';
+
 export default function PhotoCard({ photo, onClick, showActions, onRestore, onDelete }) {
   return (
     <div className="card photo-card" onClick={() => onClick?.(photo)}>
       <img src={photo.url} alt={photo.titulo || 'Foto'} loading="lazy" />
-      {photo.favorito && <span className="photo-card-badge">❤️</span>}
+      {photo.favorito && (
+        <span className="photo-card-badge">
+          <Icon name="heart" size={15} />
+        </span>
+      )}
       {photo.titulo && <div className="photo-card-overlay">{photo.titulo}</div>}
       {showActions && (
         <div
